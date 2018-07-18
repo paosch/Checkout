@@ -1,22 +1,19 @@
 class Checkout
   attr_reader :total
+  PRICE = {'A' => 50, 'B' => 30, 'C' => 20, 'D' => 15}
+  DISCOUNTS = {'A' => {:quantity => 3, :discount => 20},
+               'B' => {:quantity => 2, :discount => 15} }
+
   def initialize
     @total = 0
-    @count_A = 0
-    @count_B = 0
+    @count = 0
   end
+
   def scan(item)
-    if item == 'A'
-      @count_A += 1
-      @total -= 20 if @count_A % 3 == 0
+    if (offers = DISCOUNTS[item])
+      @count += 1
+      @total -= offers[:discount] if @count % offers[:quantity] == 0
     end
-    if item == 'B'
-      @count_B += 1
-      @total -= 15 if @count_B % 2 == 0
-    end
-    @total += 50 if item == 'A'
-    @total += 30 if item == 'B'
-    @total += 20 if item == 'C'
-    @total += 15 if item == 'D'
+    @total += PRICE[item]
   end
 end
