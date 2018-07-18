@@ -27,9 +27,19 @@ describe Checkout do
       3.times { subject.scan('A') }
       expect(subject.total).to eq 130
     end
+    it "#scan registers 180 when 4 'A' items are scanned" do
+      4.times { subject.scan('A') }
+      expect(subject.total).to eq 180
+    end
     it "#scan registers 45 when 2 'B' items are scanned" do
       2.times { subject.scan('B') }
       expect(subject.total).to eq 45
+    end
+    it "#scan works with a combination of normal and discount prices" do
+      subject.scan('C')
+      2.times { subject.scan('B') }
+      subject.scan('D')
+      expect(subject.total).to eq 80
     end
   end
 end
