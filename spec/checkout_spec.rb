@@ -36,8 +36,9 @@ describe Checkout do
       expect(subject.total).to eq 45
     end
     it "#scan works with a combination of normal and discount prices" do
+      subject.scan('B')
       subject.scan('C')
-      2.times { subject.scan('B') }
+      subject.scan('B') 
       subject.scan('D')
       expect(subject.total).to eq 80
     end
