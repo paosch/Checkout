@@ -13,4 +13,7 @@ describe Checkout do
   it "#scan registers 20 when 1 'C' item is scanned" do
     expect { subject.scan('C') }.to change { subject.total }.by(20)
   end
+  it "#scan registers 15 when 1 'D' item is scanned" do
+    expect { subject.scan('D') }.to change { subject.total }.by(15)
+  end
 end
