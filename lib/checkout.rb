@@ -6,5 +6,6 @@ class Checkout
   def scan(item)
     return @total += 50 if item == 'A'
     return @total += 30 if item == 'B'
+    return @total += 20 if item == 'C'
   end
 end
